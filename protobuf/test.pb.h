@@ -25,11 +25,10 @@
 #include <google/protobuf/generated_message_table_driven.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/inlined_string_field.h>
-#include <google/protobuf/metadata.h>
-#include <google/protobuf/message.h>
+#include <google/protobuf/metadata_lite.h>
+#include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_test_2eproto 
 
@@ -43,7 +42,6 @@ struct TableStruct {
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
 };
-void AddDescriptors();
 }  // namespace protobuf_test_2eproto
 namespace protobuf_test {
 class Record;
@@ -59,7 +57,7 @@ namespace protobuf_test {
 
 // ===================================================================
 
-class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:protobuf_test.Record) */ {
+class Record : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:protobuf_test.Record) */ {
  public:
   Record();
   virtual ~Record();
@@ -85,7 +83,6 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
     return *this;
   }
   #endif
-  static const ::google::protobuf::Descriptor* descriptor();
   static const Record& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
@@ -110,8 +107,8 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   Record* New(::google::protobuf::Arena* arena) const final {
     return CreateMaybeMessage<Record>(arena);
   }
-  void CopyFrom(const ::google::protobuf::Message& from) final;
-  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    final;
   void CopyFrom(const Record& from);
   void MergeFrom(const Record& from);
   void Clear() final;
@@ -122,14 +119,13 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
       ::google::protobuf::io::CodedInputStream* input) final;
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const final;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* target) const final;
+  void DiscardUnknownFields();
   int GetCachedSize() const final { return _cached_size_.Get(); }
 
   private:
   void SharedCtor();
   void SharedDtor();
-  void SetCachedSize(int size) const final;
+  void SetCachedSize(int size) const;
   void InternalSwap(Record* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
@@ -140,7 +136,7 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const final;
+  ::std::string GetTypeName() const final;
 
   // nested types ----------------------------------------------------
 
@@ -173,7 +169,7 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   // @@protoc_insertion_point(class_scope:protobuf_test.Record)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > ids_;
   mutable int _ids_cached_byte_size_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > ids2_;
