@@ -2,7 +2,7 @@ namespace flatbuffers_test;
 
 table Record {
 	ids:[long];
-	strings:[string];
+	ids2:[long];
 }
 
 root_type Record;

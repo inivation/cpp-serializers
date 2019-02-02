@@ -54,7 +54,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::protobuf_test::Record, ids_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::protobuf_test::Record, strings_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::protobuf_test::Record, ids2_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::protobuf_test::Record)},
@@ -85,11 +85,11 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\ntest.proto\022\rprotobuf_test\"&\n\006Record\022\013\n"
-      "\003ids\030\001 \003(\003\022\017\n\007strings\030\002 \003(\tb\006proto3"
+      "\n\ntest.proto\022\rprotobuf_test\"#\n\006Record\022\013\n"
+      "\003ids\030\001 \003(\006\022\014\n\004ids2\030\002 \003(\006b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 75);
+      descriptor, 72);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "test.proto", &protobuf_RegisterTypes);
 }
@@ -113,7 +113,7 @@ void Record::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Record::kIdsFieldNumber;
-const int Record::kStringsFieldNumber;
+const int Record::kIds2FieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Record::Record()
@@ -127,7 +127,7 @@ Record::Record(const Record& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
       ids_(from.ids_),
-      strings_(from.strings_) {
+      ids2_(from.ids2_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:protobuf_test.Record)
 }
@@ -164,7 +164,7 @@ void Record::Clear() {
   (void) cached_has_bits;
 
   ids_.Clear();
-  strings_.Clear();
+  ids2_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -178,18 +178,18 @@ bool Record::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated int64 ids = 1;
+      // repeated fixed64 ids = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
                  input, this->mutable_ids())));
         } else if (
             static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(9u /* 9 & 0xFF */)) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
                  1, 10u, input, this->mutable_ids())));
         } else {
           goto handle_unusual;
@@ -197,17 +197,19 @@ bool Record::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated string strings = 2;
+      // repeated fixed64 ids2 = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_strings()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strings(this->strings_size() - 1).data(),
-            static_cast<int>(this->strings(this->strings_size() - 1).length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "protobuf_test.Record.strings"));
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
+                 input, this->mutable_ids2())));
+        } else if (
+            static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(17u /* 17 & 0xFF */)) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
+                 1, 18u, input, this->mutable_ids2())));
         } else {
           goto handle_unusual;
         }
@@ -240,25 +242,22 @@ void Record::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated int64 ids = 1;
+  // repeated fixed64 ids = 1;
   if (this->ids_size() > 0) {
     ::google::protobuf::internal::WireFormatLite::WriteTag(1, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
     output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
         _ids_cached_byte_size_));
-  }
-  for (int i = 0, n = this->ids_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64NoTag(
-      this->ids(i), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed64Array(
+      this->ids().data(), this->ids_size(), output);
   }
 
-  // repeated string strings = 2;
-  for (int i = 0, n = this->strings_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strings(i).data(), static_cast<int>(this->strings(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "protobuf_test.Record.strings");
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->strings(i), output);
+  // repeated fixed64 ids2 = 2;
+  if (this->ids2_size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteTag(2, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
+    output->WriteVarint32(static_cast< ::google::protobuf::uint32>(
+        _ids2_cached_byte_size_));
+    ::google::protobuf::internal::WireFormatLite::WriteFixed64Array(
+      this->ids2().data(), this->ids2_size(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -275,7 +274,7 @@ void Record::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated int64 ids = 1;
+  // repeated fixed64 ids = 1;
   if (this->ids_size() > 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
       1,
@@ -285,17 +284,20 @@ void Record::SerializeWithCachedSizes(
         static_cast< ::google::protobuf::int32>(
             _ids_cached_byte_size_), target);
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt64NoTagToArray(this->ids_, target);
+      WriteFixed64NoTagToArray(this->ids_, target);
   }
 
-  // repeated string strings = 2;
-  for (int i = 0, n = this->strings_size(); i < n; i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strings(i).data(), static_cast<int>(this->strings(i).length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "protobuf_test.Record.strings");
+  // repeated fixed64 ids2 = 2;
+  if (this->ids2_size() > 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
+      2,
+      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
+      target);
+    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
+        static_cast< ::google::protobuf::int32>(
+            _ids2_cached_byte_size_), target);
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(2, this->strings(i), target);
+      WriteFixed64NoTagToArray(this->ids2_, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -315,10 +317,10 @@ size_t Record::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated int64 ids = 1;
+  // repeated fixed64 ids = 1;
   {
-    size_t data_size = ::google::protobuf::internal::WireFormatLite::
-      Int64Size(this->ids_);
+    unsigned int count = static_cast<unsigned int>(this->ids_size());
+    size_t data_size = 8UL * count;
     if (data_size > 0) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -331,12 +333,20 @@ size_t Record::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated string strings = 2;
-  total_size += 1 *
-      ::google::protobuf::internal::FromIntSize(this->strings_size());
-  for (int i = 0, n = this->strings_size(); i < n; i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->strings(i));
+  // repeated fixed64 ids2 = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->ids2_size());
+    size_t data_size = 8UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+            static_cast< ::google::protobuf::int32>(data_size));
+    }
+    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
+    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+    _ids2_cached_byte_size_ = cached_size;
+    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    total_size += data_size;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -367,7 +377,7 @@ void Record::MergeFrom(const Record& from) {
   (void) cached_has_bits;
 
   ids_.MergeFrom(from.ids_);
-  strings_.MergeFrom(from.strings_);
+  ids2_.MergeFrom(from.ids2_);
 }
 
 void Record::CopyFrom(const ::google::protobuf::Message& from) {
@@ -395,7 +405,7 @@ void Record::Swap(Record* other) {
 void Record::InternalSwap(Record* other) {
   using std::swap;
   ids_.InternalSwap(&other->ids_);
-  strings_.InternalSwap(CastToBase(&other->strings_));
+  ids2_.InternalSwap(&other->ids2_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

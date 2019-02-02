@@ -17,8 +17,8 @@
  */
 
 
-#ifndef _HOME_LLONGI_TEST_CPP_SERIALIZERS_AVRO_RECORD_HPP_2591788145__H_
-#define _HOME_LLONGI_TEST_CPP_SERIALIZERS_AVRO_RECORD_HPP_2591788145__H_
+#ifndef _HOME_LLONGI_TEST_CPP_SERIALIZERS_AVRO_RECORD_HPP_1208646361__H_
+#define _HOME_LLONGI_TEST_CPP_SERIALIZERS_AVRO_RECORD_HPP_1208646361__H_
 
 
 #include <sstream>
@@ -30,10 +30,10 @@
 namespace avro_test {
 struct Record {
     std::vector<int64_t > ids;
-    std::vector<std::string > strings;
+    std::vector<int64_t > ids2;
     Record() :
         ids(std::vector<int64_t >()),
-        strings(std::vector<std::string >())
+        ids2(std::vector<int64_t >())
         { }
 };
 
@@ -42,7 +42,7 @@ namespace avro {
 template<> struct codec_traits<avro_test::Record> {
     static void encode(Encoder& e, const avro_test::Record& v) {
         avro::encode(e, v.ids);
-        avro::encode(e, v.strings);
+        avro::encode(e, v.ids2);
     }
     static void decode(Decoder& d, avro_test::Record& v) {
         if (avro::ResolvingDecoder *rd =
@@ -55,7 +55,7 @@ template<> struct codec_traits<avro_test::Record> {
                     avro::decode(d, v.ids);
                     break;
                 case 1:
-                    avro::decode(d, v.strings);
+                    avro::decode(d, v.ids2);
                     break;
                 default:
                     break;
@@ -63,7 +63,7 @@ template<> struct codec_traits<avro_test::Record> {
             }
         } else {
             avro::decode(d, v.ids);
-            avro::decode(d, v.strings);
+            avro::decode(d, v.ids2);
         }
     }
 };

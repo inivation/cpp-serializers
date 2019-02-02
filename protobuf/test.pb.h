@@ -146,47 +146,38 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 
   // accessors -------------------------------------------------------
 
-  // repeated int64 ids = 1;
+  // repeated fixed64 ids = 1;
   int ids_size() const;
   void clear_ids();
   static const int kIdsFieldNumber = 1;
-  ::google::protobuf::int64 ids(int index) const;
-  void set_ids(int index, ::google::protobuf::int64 value);
-  void add_ids(::google::protobuf::int64 value);
-  const ::google::protobuf::RepeatedField< ::google::protobuf::int64 >&
+  ::google::protobuf::uint64 ids(int index) const;
+  void set_ids(int index, ::google::protobuf::uint64 value);
+  void add_ids(::google::protobuf::uint64 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
       ids() const;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int64 >*
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
       mutable_ids();
 
-  // repeated string strings = 2;
-  int strings_size() const;
-  void clear_strings();
-  static const int kStringsFieldNumber = 2;
-  const ::std::string& strings(int index) const;
-  ::std::string* mutable_strings(int index);
-  void set_strings(int index, const ::std::string& value);
-  #if LANG_CXX11
-  void set_strings(int index, ::std::string&& value);
-  #endif
-  void set_strings(int index, const char* value);
-  void set_strings(int index, const char* value, size_t size);
-  ::std::string* add_strings();
-  void add_strings(const ::std::string& value);
-  #if LANG_CXX11
-  void add_strings(::std::string&& value);
-  #endif
-  void add_strings(const char* value);
-  void add_strings(const char* value, size_t size);
-  const ::google::protobuf::RepeatedPtrField< ::std::string>& strings() const;
-  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_strings();
+  // repeated fixed64 ids2 = 2;
+  int ids2_size() const;
+  void clear_ids2();
+  static const int kIds2FieldNumber = 2;
+  ::google::protobuf::uint64 ids2(int index) const;
+  void set_ids2(int index, ::google::protobuf::uint64 value);
+  void add_ids2(::google::protobuf::uint64 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
+      ids2() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
+      mutable_ids2();
 
   // @@protoc_insertion_point(class_scope:protobuf_test.Record)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int64 > ids_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > ids_;
   mutable int _ids_cached_byte_size_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> strings_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint64 > ids2_;
+  mutable int _ids2_cached_byte_size_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_test_2eproto::TableStruct;
 };
@@ -201,103 +192,64 @@ class Record : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 #endif  // __GNUC__
 // Record
 
-// repeated int64 ids = 1;
+// repeated fixed64 ids = 1;
 inline int Record::ids_size() const {
   return ids_.size();
 }
 inline void Record::clear_ids() {
   ids_.Clear();
 }
-inline ::google::protobuf::int64 Record::ids(int index) const {
+inline ::google::protobuf::uint64 Record::ids(int index) const {
   // @@protoc_insertion_point(field_get:protobuf_test.Record.ids)
   return ids_.Get(index);
 }
-inline void Record::set_ids(int index, ::google::protobuf::int64 value) {
+inline void Record::set_ids(int index, ::google::protobuf::uint64 value) {
   ids_.Set(index, value);
   // @@protoc_insertion_point(field_set:protobuf_test.Record.ids)
 }
-inline void Record::add_ids(::google::protobuf::int64 value) {
+inline void Record::add_ids(::google::protobuf::uint64 value) {
   ids_.Add(value);
   // @@protoc_insertion_point(field_add:protobuf_test.Record.ids)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int64 >&
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
 Record::ids() const {
   // @@protoc_insertion_point(field_list:protobuf_test.Record.ids)
   return ids_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int64 >*
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
 Record::mutable_ids() {
   // @@protoc_insertion_point(field_mutable_list:protobuf_test.Record.ids)
   return &ids_;
 }
 
-// repeated string strings = 2;
-inline int Record::strings_size() const {
-  return strings_.size();
+// repeated fixed64 ids2 = 2;
+inline int Record::ids2_size() const {
+  return ids2_.size();
 }
-inline void Record::clear_strings() {
-  strings_.Clear();
+inline void Record::clear_ids2() {
+  ids2_.Clear();
 }
-inline const ::std::string& Record::strings(int index) const {
-  // @@protoc_insertion_point(field_get:protobuf_test.Record.strings)
-  return strings_.Get(index);
+inline ::google::protobuf::uint64 Record::ids2(int index) const {
+  // @@protoc_insertion_point(field_get:protobuf_test.Record.ids2)
+  return ids2_.Get(index);
 }
-inline ::std::string* Record::mutable_strings(int index) {
-  // @@protoc_insertion_point(field_mutable:protobuf_test.Record.strings)
-  return strings_.Mutable(index);
+inline void Record::set_ids2(int index, ::google::protobuf::uint64 value) {
+  ids2_.Set(index, value);
+  // @@protoc_insertion_point(field_set:protobuf_test.Record.ids2)
 }
-inline void Record::set_strings(int index, const ::std::string& value) {
-  // @@protoc_insertion_point(field_set:protobuf_test.Record.strings)
-  strings_.Mutable(index)->assign(value);
+inline void Record::add_ids2(::google::protobuf::uint64 value) {
+  ids2_.Add(value);
+  // @@protoc_insertion_point(field_add:protobuf_test.Record.ids2)
 }
-#if LANG_CXX11
-inline void Record::set_strings(int index, ::std::string&& value) {
-  // @@protoc_insertion_point(field_set:protobuf_test.Record.strings)
-  strings_.Mutable(index)->assign(std::move(value));
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >&
+Record::ids2() const {
+  // @@protoc_insertion_point(field_list:protobuf_test.Record.ids2)
+  return ids2_;
 }
-#endif
-inline void Record::set_strings(int index, const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  strings_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:protobuf_test.Record.strings)
-}
-inline void Record::set_strings(int index, const char* value, size_t size) {
-  strings_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:protobuf_test.Record.strings)
-}
-inline ::std::string* Record::add_strings() {
-  // @@protoc_insertion_point(field_add_mutable:protobuf_test.Record.strings)
-  return strings_.Add();
-}
-inline void Record::add_strings(const ::std::string& value) {
-  strings_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:protobuf_test.Record.strings)
-}
-#if LANG_CXX11
-inline void Record::add_strings(::std::string&& value) {
-  strings_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:protobuf_test.Record.strings)
-}
-#endif
-inline void Record::add_strings(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  strings_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:protobuf_test.Record.strings)
-}
-inline void Record::add_strings(const char* value, size_t size) {
-  strings_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:protobuf_test.Record.strings)
-}
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-Record::strings() const {
-  // @@protoc_insertion_point(field_list:protobuf_test.Record.strings)
-  return strings_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-Record::mutable_strings() {
-  // @@protoc_insertion_point(field_mutable_list:protobuf_test.Record.strings)
-  return &strings_;
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint64 >*
+Record::mutable_ids2() {
+  // @@protoc_insertion_point(field_mutable_list:protobuf_test.Record.ids2)
+  return &ids2_;
 }
 
 #ifdef __GNUC__

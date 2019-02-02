@@ -13,21 +13,20 @@ struct Record;
 struct Record FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   enum {
     VT_IDS = 4,
-    VT_STRINGS = 6
+    VT_IDS2 = 6
   };
   const flatbuffers::Vector<int64_t> *ids() const {
     return GetPointer<const flatbuffers::Vector<int64_t> *>(VT_IDS);
   }
-  const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *strings() const {
-    return GetPointer<const flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>> *>(VT_STRINGS);
+  const flatbuffers::Vector<int64_t> *ids2() const {
+    return GetPointer<const flatbuffers::Vector<int64_t> *>(VT_IDS2);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_IDS) &&
            verifier.VerifyVector(ids()) &&
-           VerifyOffset(verifier, VT_STRINGS) &&
-           verifier.VerifyVector(strings()) &&
-           verifier.VerifyVectorOfStrings(strings()) &&
+           VerifyOffset(verifier, VT_IDS2) &&
+           verifier.VerifyVector(ids2()) &&
            verifier.EndTable();
   }
 };
@@ -38,8 +37,8 @@ struct RecordBuilder {
   void add_ids(flatbuffers::Offset<flatbuffers::Vector<int64_t>> ids) {
     fbb_.AddOffset(Record::VT_IDS, ids);
   }
-  void add_strings(flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> strings) {
-    fbb_.AddOffset(Record::VT_STRINGS, strings);
+  void add_ids2(flatbuffers::Offset<flatbuffers::Vector<int64_t>> ids2) {
+    fbb_.AddOffset(Record::VT_IDS2, ids2);
   }
   explicit RecordBuilder(flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
@@ -56,9 +55,9 @@ struct RecordBuilder {
 inline flatbuffers::Offset<Record> CreateRecord(
     flatbuffers::FlatBufferBuilder &_fbb,
     flatbuffers::Offset<flatbuffers::Vector<int64_t>> ids = 0,
-    flatbuffers::Offset<flatbuffers::Vector<flatbuffers::Offset<flatbuffers::String>>> strings = 0) {
+    flatbuffers::Offset<flatbuffers::Vector<int64_t>> ids2 = 0) {
   RecordBuilder builder_(_fbb);
-  builder_.add_strings(strings);
+  builder_.add_ids2(ids2);
   builder_.add_ids(ids);
   return builder_.Finish();
 }
@@ -66,11 +65,11 @@ inline flatbuffers::Offset<Record> CreateRecord(
 inline flatbuffers::Offset<Record> CreateRecordDirect(
     flatbuffers::FlatBufferBuilder &_fbb,
     const std::vector<int64_t> *ids = nullptr,
-    const std::vector<flatbuffers::Offset<flatbuffers::String>> *strings = nullptr) {
+    const std::vector<int64_t> *ids2 = nullptr) {
   return flatbuffers_test::CreateRecord(
       _fbb,
       ids ? _fbb.CreateVector<int64_t>(*ids) : 0,
-      strings ? _fbb.CreateVector<flatbuffers::Offset<flatbuffers::String>>(*strings) : 0);
+      ids2 ? _fbb.CreateVector<int64_t>(*ids2) : 0);
 }
 
 inline const flatbuffers_test::Record *GetRecord(const void *buf) {

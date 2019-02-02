@@ -10,10 +10,10 @@
             }
         },
         {
-            "name": "strings",
+            "name": "ids2",
             "type": {
                 "type": "array",
-                "items": "string"
+                "items": "long"
             }
         }
     ]

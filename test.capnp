@@ -4,5 +4,5 @@ $import "/capnp/c++.capnp".namespace("capnp_test");
 
 struct Record {
     ids @0 :List(Int64);
-    strings @1 :List(Text);
+    ids2 @1 :List(Int64);
 }

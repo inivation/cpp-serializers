@@ -58,8 +58,8 @@ public:
   inline bool hasIds() const;
   inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Reader getIds() const;
 
-  inline bool hasStrings() const;
-  inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader getStrings() const;
+  inline bool hasIds2() const;
+  inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Reader getIds2() const;
 
 private:
   ::capnp::_::StructReader _reader;
@@ -97,13 +97,13 @@ public:
   inline void adoptIds(::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>&& value);
   inline ::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>> disownIds();
 
-  inline bool hasStrings();
-  inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder getStrings();
-  inline void setStrings( ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader value);
-  inline void setStrings(::kj::ArrayPtr<const  ::capnp::Text::Reader> value);
-  inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder initStrings(unsigned int size);
-  inline void adoptStrings(::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>&& value);
-  inline ::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>> disownStrings();
+  inline bool hasIds2();
+  inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Builder getIds2();
+  inline void setIds2( ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Reader value);
+  inline void setIds2(::kj::ArrayPtr<const  ::int64_t> value);
+  inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Builder initIds2(unsigned int size);
+  inline void adoptIds2(::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>&& value);
+  inline ::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>> disownIds2();
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -171,41 +171,41 @@ inline ::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>> Re
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
-inline bool Record::Reader::hasStrings() const {
+inline bool Record::Reader::hasIds2() const {
   return !_reader.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
 }
-inline bool Record::Builder::hasStrings() {
+inline bool Record::Builder::hasIds2() {
   return !_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
 }
-inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader Record::Reader::getStrings() const {
-  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::get(_reader.getPointerField(
+inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Reader Record::Reader::getIds2() const {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::get(_reader.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
-inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder Record::Builder::getStrings() {
-  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::get(_builder.getPointerField(
+inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Builder Record::Builder::getIds2() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::get(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
-inline void Record::Builder::setStrings( ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader value) {
-  ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::set(_builder.getPointerField(
+inline void Record::Builder::setIds2( ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Reader value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::set(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), value);
 }
-inline void Record::Builder::setStrings(::kj::ArrayPtr<const  ::capnp::Text::Reader> value) {
-  ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::set(_builder.getPointerField(
+inline void Record::Builder::setIds2(::kj::ArrayPtr<const  ::int64_t> value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::set(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), value);
 }
-inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder Record::Builder::initStrings(unsigned int size) {
-  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::init(_builder.getPointerField(
+inline  ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>::Builder Record::Builder::initIds2(unsigned int size) {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::init(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), size);
 }
-inline void Record::Builder::adoptStrings(
-    ::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>&& value) {
-  ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::adopt(_builder.getPointerField(
+inline void Record::Builder::adoptIds2(
+    ::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>&& value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::adopt(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), kj::mv(value));
 }
-inline ::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>> Record::Builder::disownStrings() {
-  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::disown(_builder.getPointerField(
+inline ::capnp::Orphan< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>> Record::Builder::disownIds2() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::int64_t,  ::capnp::Kind::PRIMITIVE>>::disown(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
 

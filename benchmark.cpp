@@ -134,8 +134,8 @@ protobuf_serialization_test(size_t iterations)
         r1.add_ids(kIntegers[i]);
     }
 
-    for (size_t i = 0; i < kStringsCount; i++) {
-        r1.add_strings(kStringValue);
+for (size_t i = 0; i < kIntegers.size(); i++) {
+        r1.add_ids2(kIntegers[i]);
     }
 
     std::string serialized;
@@ -177,9 +177,9 @@ capnproto_serialization_test(size_t iterations)
         ids.set(i, kIntegers[i]);
     }
 
-    auto strings = r1.initStrings(kStringsCount);
-    for (size_t i = 0; i < kStringsCount; i++) {
-        strings.set(i, kStringValue);
+auto ids2 = r1.initIds2(kIntegers.size());
+    for (size_t i = 0; i < kIntegers.size(); i++) {
+        ids2.set(i, kIntegers[i]);
     }
 
     kj::ArrayPtr<const kj::ArrayPtr<const capnp::word>> serialized = message.getSegmentsForOutput();
@@ -209,9 +209,9 @@ capnproto_serialization_test(size_t iterations)
             ids.set(i, kIntegers[i]);
         }
 
-        auto strings = r1.initStrings(kStringsCount);
-        for (size_t i = 0; i < kStringsCount; i++) {
-            strings.set(i, kStringValue);
+  auto ids2 = r1.initIds2(kIntegers.size());
+        for (size_t i = 0; i < kIntegers.size(); i++) {
+            ids2.set(i, kIntegers[i]);
         }
 
         serialized = message.getSegmentsForOutput();
@@ -219,7 +219,7 @@ capnproto_serialization_test(size_t iterations)
         auto r2 = reader.getRoot<Record>();
 
         (void)r2.getIds().size();
-        (void)r2.getStrings().size();
+        (void)r2.getIds2().size();
     }
     auto finish = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count();
@@ -363,8 +363,8 @@ avro_serialization_test(size_t iterations)
         r1.ids.push_back(kIntegers[i]);
     }
 
-    for (size_t i = 0; i < kStringsCount; i++) {
-        r1.strings.push_back(kStringValue);
+for (size_t i = 0; i < kIntegers.size(); i++) {
+        r1.ids2.push_back(kIntegers[i]);
     }
 
     std::unique_ptr<avro::OutputStream> out = avro::memoryOutputStream();
@@ -381,7 +381,7 @@ avro_serialization_test(size_t iterations)
     decoder->init(*in);
     avro::decode(*decoder, r2);
 
-    if (r1.ids != r2.ids || r1.strings != r2.strings || r2.ids.size() != kIntegers.size() || r2.strings.size() != kStringsCount) {
+    if (r1.ids != r2.ids || r1.ids2 != r2.ids2 || r2.ids.size() != kIntegers.size() || r2.ids2.size() != kIntegers.size()) {
         throw std::logic_error("avro's case: deserialization failed");
     }
 
@@ -410,17 +410,11 @@ flatbuffers_serialization_test(size_t iterations)
 {
     using namespace flatbuffers_test;
 
-    std::vector<flatbuffers::Offset<flatbuffers::String>> strings;
-    strings.reserve(kStringsCount);
-
     flatbuffers::FlatBufferBuilder builder;
-    for (size_t i = 0; i < kStringsCount; i++) {
-        strings.push_back(builder.CreateString(kStringValue));
-    }
 
     auto ids_vec = builder.CreateVector(kIntegers);
-    auto strings_vec = builder.CreateVector(strings);
-    auto r1 = CreateRecord(builder, ids_vec, strings_vec);
+    auto ids2_vec = builder.CreateVector(kIntegers);
+    auto r1 = CreateRecord(builder, ids_vec, ids2_vec);
 
     builder.Finish(r1);
 
@@ -429,7 +423,7 @@ flatbuffers_serialization_test(size_t iterations)
     std::vector<char> buf(p, p + sz);
 
     auto r2 = GetRecord(buf.data());
-    if (r2->strings()->size() != kStringsCount || r2->ids()->size() != kIntegers.size()) {
+    if (r2->ids2()->size() != kIntegers.size() || r2->ids()->size() != kIntegers.size()) {
         throw std::logic_error("flatbuffer's case: deserialization failed");
     }
 
@@ -440,15 +434,10 @@ flatbuffers_serialization_test(size_t iterations)
     auto start = std::chrono::high_resolution_clock::now();
     for (size_t i = 0; i < iterations; i++) {
         flatbuffers::FlatBufferBuilder builder;
-        strings.clear();
-
-        for (size_t i = 0; i < kStringsCount; i++) {
-            strings.push_back(builder.CreateString(kStringValue));
-        }
 
         auto ids_vec = builder.CreateVector(kIntegers);
-        auto strings_vec = builder.CreateVector(strings);
-        auto r1 = CreateRecord(builder, ids_vec, strings_vec);
+        auto ids2_vec = builder.CreateVector(kIntegers);
+        auto r1 = CreateRecord(builder, ids_vec, ids2_vec);
         builder.Finish(r1);
 
         auto p = reinterpret_cast<char*>(builder.GetBufferPointer());
